@@ -1,0 +1,114 @@
+1p)..create doctor table
+
+import mysql.connector as c
+mydb=c.connect(
+    host='localhost',
+    user='root',
+    password='cvr123',
+    database='aimlb'
+)
+mycursor=mydb.cursor()
+mycursor.execute("create table doctor(did int,dname varchar(20),salary int,city varchar(20))")
+mydb.commit()
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2p)...insert values into table
+
+import mysql.connector as c
+mydb = c.connect(
+    host='localhost',
+    user='root',
+    password='cvr123',
+    database='aimlb'
+)
+mycursor = mydb.cursor()
+
+doctors = [
+    (101, 'John Doe', 55000, 'New York'),
+    (102, 'Jane Smith', 60000, 'Los Angeles'),
+    (103, 'Robert Brown', 52000, 'Chicago'),
+    (104, 'Emily Davis', 49000, 'Miami'),
+    (105, 'Michael Wilson', 47000, 'San Francisco')
+]
+
+for doctor in doctors:
+    mycursor.execute("INSERT INTO doctor (did,dname, salary, city) VALUES (%s, %s, %s, %s)", doctor)
+
+mydb.commit()
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3p)...update name with id
+
+
+import mysql.connector as c
+mydb=c.connect(
+    host='localhost',
+    user='root',
+    password='cvr123',
+    database='aimlb'
+)
+mycursor=mydb.cursor()
+mycursor.execute("update doctor set dname='mahendar',salary=2500 where did=100")
+mydb.commit()
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4p)..select all records from table
+
+
+import mysql.connector as c
+mydb=c.connect(
+    host='localhost',
+    user='root',
+    password='cvr123',
+    database='aimlb'
+)
+mycursor=mydb.cursor()
+mycursor.execute("select * from doctor")
+doc=mycursor.fetchall()
+for d in doc:
+    print(d)
+mydb.commit()
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+5p)..delete specific row with id
+
+import mysql.connector as c
+mydb=c.connect(
+    host='localhost',
+    user='root',
+    password='cvr123',
+    database='aimlb'
+)
+mycursor=mydb.cursor()
+mycursor.execute("delete from doctor where did=105")
+mydb.commit()
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+6p)..select ename with where salary between 45000 and 60000..
+
+import mysql.connector as c
+mydb=c.connect(
+    host='localhost',
+    user='root',
+    password='cvr123',
+    database='aimlb'
+)
+mycursor=mydb.cursor()
+mycursor.execute("select dname from doctor where salary between 45000 and 60000")
+stu=mycursor.fetchall()
+for i in stu:
+    print(i)
+mydb.commit()
